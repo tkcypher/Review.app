@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "/" => "items#top"
+  get "/top" => "items#top"
 
   get "/about" => "items#about"
 
