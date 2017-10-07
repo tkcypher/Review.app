@@ -1,0 +1,117 @@
+<!-- プロフィールここまで -->
+
+
+<!-- 追加した授業ここから -->
+<!-- <div class="prof-takes">
+
+<div class="page-header">
+  <h2>追加した授業 <span class="glyphicon glyphicon-book" aria-hidden="true"></span></h2>
+</div>
+<% if @user.lessons.empty? %>
+  <div>追加した授業がありません</div>
+<% else %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>授業名</th>
+        <th>教員</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user_lessons.each do |lesson| %>
+        <tr>
+          <td><%= link_to lesson.title, lesson_path(lesson) %></td>
+          <td><%= lesson.teacher %></td>
+          <td>
+            <% if lesson.taken_by? current_user %>
+              <%= link_to lesson_takes_path(lesson), method: :delete do %>
+                <button class="btn btn-primary btn-take">履修中</button>
+              <% end %>
+            <% else %>
+              <%= link_to lesson_takes_path(lesson), method: :post do %>
+                <button class="btn btn-warning btn-take">履修する</button>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_lesson_path(lesson) do %>
+              <button class="btn btn-default">編集</button>
+            <% end %>
+            <% if current_user.id == lesson.user_id %>
+              <%= link_to lesson, method: :delete, data: { confirm: "本当によろしいですか？" } do %>
+                <button class="btn btn-default">削除</button>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %><br>
+<%= link_to new_lesson_path do %>
+  <button class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 新しい授業を追加する</button>
+<% end %>
+
+
+<!-- <div class="page-header">
+  <h1><%= @user.name %>の履修授業一覧</h1>
+</div>
+<% if @user.takes.empty? %>
+  <span>履修中の授業がありません</span>
+<% else %>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+        <th>授業名</th>
+        <th>教員</th>
+        <th class="text-center">レビュー数</th>
+        <th class="text-center">履修者数</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @takes.map {|f| f.lesson }.each do |lesson| %>
+          <tr>
+            <td><%= link_to lesson.title, lesson_path(lesson) %></td>
+            <td><%= lesson.teacher %></td>
+
+          <td class="text-center">
+            <%= link_to lesson_path(lesson) do %>
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 
+              <%= lesson.reviews.count %>
+            <% end %>
+          </td>
+
+          <td class="text-center">
+            <%= link_to takers_lesson_path(lesson) do %>
+              <i class="fa fa-user" aria-hidden="true"></i> 
+              <%= lesson.takes.count %>
+            <% end %>
+          </td>
+
+            <td>
+              <% if lesson.taken_by? current_user %>
+                <%= link_to lesson_takes_path(lesson), method: :delete do %>
+                  <button class="btn btn-primary">履修中</button>
+                <% end %>
+              <% else %>
+                <%= link_to lesson_takes_path(lesson), method: :post do %>
+                  <button class="btn btn-warning">履修する</button>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_lesson_path(lesson) do %>
+                <button class="btn btn-default">編集</button>
+              <% end %>
+              <% if current_user.id == lesson.user_id %>
+                <%= link_to lesson, method: :delete, data: { confirm: "本当によろしいですか？" } do %>
+                  <button class="btn btn-default">削除</button>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+<% end %> -->

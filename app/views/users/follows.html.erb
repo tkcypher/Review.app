@@ -1,0 +1,59 @@
+<div class="box">
+<div class="page-header">
+  <h1>フォロー一覧 <i class="fa fa-users" aria-hidden="true"></i></h1>
+</div>
+
+<div class="wrap clearfix">
+  <% if @follows.empty? %>
+    <div>フォローしていません</div>
+  <% else %>
+    <% @follows.each do |user| %>
+      <div class="users">
+
+        <div class="user-image">
+          <% if user.image.present? %>
+            <%= link_to user_path(user) do %>
+              <%= image_tag user.image.url %>
+            <% end %>
+          <% else %>
+            <%= link_to user_path(user) do %>
+              <%= image_tag "/assets/no_image.png" %>
+            <% end %>
+          <% end %>
+        </div>
+
+          <br>
+          <%= link_to user_path(user) do %>
+            <h4><strong><%= user.name %>@<%= user.username %></strong></h4>
+          <% end %>
+
+        <div>
+          <% if current_user != user %>
+            <% if user.followed_by?(current_user) %>
+              <%= link_to user_relationships_path(user), method: :delete do %>
+                <button class="btn btn-primary btn-index">フォロー中</button>
+              <% end %>
+            <% else %>
+              <%= link_to user_relationships_path(user), method: :post do %>
+                <button class="btn btn-warning btn-index">フォローする</button>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to edit_user_registration_path(current_user) do %>
+              <button class="btn btn-success btn-index">
+                プロフィール編集 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              </button>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<%= paginate @follows %>
+
+<br>
+<%= link_to "プロフィールへ", user_path(@user) %>
+</div>

@@ -1,0 +1,41 @@
+<%= form_with(model: lesson, local: true) do |form| %>
+  <% if lesson.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+
+      <ul>
+      <% lesson.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "授業名" %><br>
+    <%= form.text_field :title, id: :lesson_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label "教員名" %><br>
+    <%= form.text_field :teacher, id: :lesson_teacher %>
+  </div>
+
+  <!-- 
+  <div class="field">
+    <%#= form.label :user_id %>
+    <%#= form.number_field :user_id, id: :lesson_user_id %>
+  </div> 
+  -->
+
+  <!-- 
+  <div class="field">
+    <%#= form.label :user_id %><br>
+    <%#= form.collection_select :user_id, User.all, :id, :id %>
+  </div> 
+  -->
+
+  <div class="actions">
+    <%= form.submit "送信" %>
+  </div>
+<% end %>

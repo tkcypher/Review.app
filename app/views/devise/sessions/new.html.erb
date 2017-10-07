@@ -1,0 +1,32 @@
+<div class="box">
+<div class="page-header">
+  <h2>
+    ログイン <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+  </h2>
+</div>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label "ユーザーネーム" %><br>
+    <%= f.text_field :username, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "パスワード" %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label "ログイン情報を記憶する" %>
+    </div>
+  <% end -%>
+
+  <div class="actions">
+    <%= f.submit "ログイン" %>
+  </div>
+<% end %><br>
+
+<%= render "devise/shared/links" %>
+</div>
