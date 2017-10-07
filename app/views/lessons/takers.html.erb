@@ -8,7 +8,7 @@
 <div class="wrap clearfix">
 
 <% if @takers.empty? %>
-  <div>履修者がいない</div>
+  <div>履修者がいません</div>
 <% else %>
   <% @takers.each do |taker| %>
     <div class="users">
@@ -58,60 +58,5 @@
 </div>
 
 <%= link_to "授業詳細へ", lesson_path(@lesson) %>
-
-
-<!-- コメントアウトここから -->
-<% if false %>
-
-<% if @takers.empty? %>
-  <div>履修者がいません</div>
-<% else %>
-  <table class="table table-hover">
-    <tbody>
-      <% @takers.each do |taker| %>
-        <tr>
-          <td>
-            <% if taker.user.image.present? %>
-              <%= link_to user_path(taker.user) do %>
-                <%= image_tag taker.user.image.url %>
-              <% end %>
-            <% else %>
-              <%= link_to user_path(taker.user) do %>
-                <%= image_tag "/assets/no_image.png" %>
-              <% end %>
-            <% end %>
-            <br>
-            <%= link_to user_path(taker.user) do %>
-              <h4><strong><%= taker.user.name %>@<%= taker.user.username %></strong></h4>
-            <% end %>
-          </td>
-          <td>
-            <% if current_user != taker.user %>
-              <% if taker.user.followed_by?(current_user) %>
-                <%= link_to user_relationships_path(taker.user), method: :delete do %>
-                  <button class="btn btn-primary btn-index">フォロー中</button>
-                <% end %>
-              <% else %>
-                <%= link_to user_relationships_path(taker.user), method: :post do %>
-                  <button class="btn btn-warning btn-index">フォローする</button>
-                <% end %>
-              <% end %>
-            <% else %>
-              <%= link_to edit_user_registration_path(current_user) do %>
-                <button class="btn btn-success">
-                  プロフィール編集 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                </button>
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
-
-<% end %>
-<!-- コメントアウトここまで -->
-
 
 </div>

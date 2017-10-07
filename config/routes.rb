@@ -20,7 +20,6 @@ Rails.application.routes.draw do
    :registrations => 'users/registrations' 
   }
 
-  # devise_for :users
   resources :users do
   	get :takes, on: :member
     resource :relationships, only: [:create, :destroy]
@@ -30,7 +29,7 @@ Rails.application.routes.draw do
   end
   resources :lessons do
   	resource :takes, only: [:create, :destroy]
-    get :takers, on: :member #追加
+    get :takers, on: :member
     resource :reviews, only: [:create, :destroy] do
       resource :favorites, only: [:create, :destroy]
     end

@@ -1,19 +1,16 @@
 class UsersController < ApplicationController
   def index
     @users = User.page(params[:page]).per(20).order(created_at: :desc)
-  	# @users = User.all
   end
 
   def show
   	@user = User.find(params[:id])
-    # @user_lessons = @user.lessons.order(created_at: :desc)
     @user_reviews = @user.reviews.order(created_at: :desc)
     @takes = @user.takes.order(created_at: :desc)
   end
 
   def takes
   	@user = User.find(params[:id])
-    # @takes = @user.takes.order(created_at: :desc)
     @user_lessons = @user.lessons.order(created_at: :desc)
   end
 

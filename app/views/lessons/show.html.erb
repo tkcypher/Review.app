@@ -74,14 +74,6 @@
   	      <td class="review-body"><%= review.body %></td>
           <td><%= review.created_at.strftime('%Y/%m/%d %H:%M') %></td>
 
-          <!-- <td>
-            <%# if review.favorited_by? current_user %>
-              <%#= link_to "いいね済み", lesson_reviews_favorites_path(review), method: :delete  %>
-            <%# else %>
-              <%#= link_to "いいね", lesson_reviews_favorites_path(review), method: :post %>
-            <%# end %>
-          </td> -->
-
           <td>
           <% if current_user.id == review.user_id %>
             <%= link_to lesson_reviews_path(review.lesson), method: :delete, data: { confirm: "本当によろしいですか？"} do %>
